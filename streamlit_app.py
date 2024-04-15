@@ -7,10 +7,7 @@ from io import StringIO
 import xml.etree.ElementTree as et
 import graphviz
 import base64
-import streamlit.components.v1 as components
-import pandas as pd
-import networkx as nx
-from pyvis.network import Network
+
 """
 # Tableau Analyzer
 
