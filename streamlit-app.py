@@ -75,4 +75,4 @@ if uploaded_file is not None and counter==0:
 
     datasource=datasource.merge(calctranslate,left_on='calculation',right_on='oldcalc',how='left')
     datasource=datasource.drop_duplicates()
-    #st.write(datasource)
+    st.write(datasource)
