@@ -57,22 +57,27 @@ if uploaded_file is not None and counter==0:
     df2=columnData
   
     calctranslate=pd.DataFrame(columns=['oldcalc','calculation_new'])
+
+    relationshipdf=pd.DataFrame(columns=['parentcaption','childcaption'])
     #print(df)
   
     columnname=df[['column','caption']]
     columnname=columnname[columnname['column'].apply(lambda x: x.startswith('[Calculation_'))]         
     columnname=columnname.rename(columns={"column": "col", "caption": "cap"})
+
+    hierarchydata=pd.DataFrame(columns=['parentName','parentCaption','childName','childCaption'])
+    
     for index,row in df.iterrows():
-        tempcalc=(row['calculation'])
-        newcalc=tempcalc
+        childcalc=(row['calculation'])
+        childCaption=row['caption']
+        childName=row['column'
+        #basically a self-join, to determine if any/all column fields exist in the calculation
         for index,row in columnname.iterrows():
-            if row['col'].startswith('[Calculation_'):
-                newcalc = newcalc.replace(row['col'], '['+row['cap']+']')
-        row=[tempcalc,newcalc]
-        calctranslate.loc[len(calctranslate)] = row
-        tempcalc=''
+            parentName=row['col']
+            parentCaption=row['cap']
+            if parentName in childcalc:
+                row=[parentName,parentCaption,childName,childCaption]
+                hierarchydata.loc[len(calctranslate)] = row
 
-
-    datasource=columnData.merge(calctranslate,left_on='calculation',right_on='oldcalc',how='left')
-    datasource=datasource.drop_duplicates()
-    st.write(datasource)
+    hierarchydata=hierarchydata.drop_duplicates()
+    st.write(hierarchydata)
