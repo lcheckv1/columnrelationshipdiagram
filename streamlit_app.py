@@ -82,6 +82,5 @@ if uploaded_file is not None and counter==0:
     for index, row in hierarchydata.iterrows():
         graph.edge(str(row["parent"]), str(row["child"]), label='')
 
-    st.graphviz_chart(graph)
-    st.write(hierarchydata)
-    st.write(columnData)
+    st.graphviz_chart(graph,use_container_width=true)
+
