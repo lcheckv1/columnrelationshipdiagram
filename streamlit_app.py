@@ -14,12 +14,14 @@ Please select a .twb file to upload, then select data columns, worksheets, or da
 A table will appear telling you where selected columns appear as a data dependency within each worksheet or dashboard.
 
 """
+# Initialize session state variables
+if 'count' not in st.session_state:
+   st.session_state.count = 0
 
 
 uploaded_file=st.file_uploader("Upload a .twb.", disabled=False, label_visibility="visible")
-counter=0
-if uploaded_file is not None and counter==0:
-    counter+=1
+if uploaded_file is not None and st.session_state.count==0:
+    st.session_state.count=1
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     string_data = stringio.read()
     root=et.fromstring(string_data)
@@ -72,29 +74,27 @@ if uploaded_file is not None and counter==0:
             if parentName in childcalc:
                 row=[parentName,parentCaption,childName,childCaption]
                 hierarchydata.loc[len(hierarchydata)] = row
-                
 
     hierarchydata=hierarchydata.drop_duplicates()
     hierarchydata['parent']=hierarchydata.parentCaption.combine_first(hierarchydata.parentName)
     hierarchydata['child']=hierarchydata.childCaption.combine_first(hierarchydata.childName)
-    #Create Graph Nodes and interconnecting Edges
-    graph = graphviz.Digraph()
-    for index, row in hierarchydata.iterrows():
-        graph.edge(str(row["parent"]), str(row["child"]), label='')
-
-    chart=st.graphviz_chart(graph,use_container_width=False)
+    data = dropdownData['caption'].unique().tolist()
+    data=sorted(data)
 
 
-        
-    image_data = graph.pipe(format='png')
-    image_base64 = base64.b64encode(image_data).decode()
+#Create Graph Nodes and interconnecting Edges
 
-    
-    # Decode the base64 image data back to bytes
-    graph_img_bytes = base64.b64decode(image_base64.encode())
-    
-    st.download_button(label="Download PNG Image",
-                       data=graph_img_bytes,
-                       file_name='graph.png',
-                       mime='image/png')
+graphdata=hierarchydata
+dataselect=st.sidebar.multiselect('Parent Columns',data)
+graphdata=graphdata[graphdata['parentCaption'].isin(dataselect)]
+childselect=st.sidebar.multiselect('Child Columns',data)
+graphdata=graphdata[graphdata['childCaption'].isin(childselect)]
+
+graph = graphviz.Digraph()
+for index, row in graphdata.iterrows():
+    graph.edge(str(row["parent"]), str(row["child"]), label='')
+
+chart=st.graphviz_chart(graph,use_container_width=False)
+
+
 
