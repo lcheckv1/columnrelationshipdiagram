@@ -15,12 +15,12 @@ A table will appear telling you where selected columns appear as a data dependen
 
 """
 # Initialize session state variables
-if 'count' not in st.session_state:
-   st.session_state.count = 0
-st.write('Count = ', st.session_state.count)
+#if 'count' not in st.session_state:
+#   st.session_state.count = 0
+#st.write('Count = ', st.session_state.count)
 
 uploaded_file=st.file_uploader("Upload a .twb.", disabled=False, label_visibility="visible")
-if uploaded_file is not None and st.session_state.count==0:
+if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     string_data = stringio.read()
     root=et.fromstring(string_data)
@@ -80,7 +80,7 @@ if uploaded_file is not None and st.session_state.count==0:
     data = columnData['caption'].unique().tolist()
     data=sorted(data)
 
-if uploaded_file is not None and st.session_state.count==0:
+if uploaded_file is not None:
    #Create Graph Nodes and interconnecting Edges
    
    graphdata=hierarchydata
