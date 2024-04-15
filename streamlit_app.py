@@ -77,8 +77,8 @@ if uploaded_file is not None and counter==0:
     hierarchydata=hierarchydata.drop_duplicates()
     #Create Graph Nodes and interconnecting Edges
     graph = graphviz.Digraph()
-    for index, row in df.iterrows():
-        graph.edge(str(hierarchydata["parentName"]), str(hierarchydata["childName"]), label='')
+    for index, row in hierarchydata.iterrows():
+        graph.edge(str(row["parentName"]), str(row["childName"]), label='')
 
     st.graphviz_chart(graph)
     st.write(hierarchydata)
