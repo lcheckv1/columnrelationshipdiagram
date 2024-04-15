@@ -1,3 +1,4 @@
+#make it so that the calculated fields join 5
 
 import altair as alt
 import numpy as np
@@ -17,7 +18,6 @@ A table will appear telling you where selected columns appear as a data dependen
 # Initialize session state variables
 if 'count' not in st.session_state:
    st.session_state.count = 0
-st.write('Count = ', st.session_state.count)
 
 
 
