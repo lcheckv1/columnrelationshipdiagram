@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 from io import StringIO
 import xml.etree.ElementTree as et
-from graphviz import Digraph
+import graphviz
 
 """
 # Tableau Analyzer
