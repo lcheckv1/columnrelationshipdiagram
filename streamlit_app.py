@@ -75,8 +75,8 @@ if uploaded_file is not None and counter==0:
                 
 
     hierarchydata=hierarchydata.drop_duplicates()
-    hierarchydata['parent']=hierarchydata.parentName.combine_first(hierarchydata.parentCaption)
-    hierarchydata['child']=hierarchydata.childName.combine_first(hierarchydata.childCaption)
+    hierarchydata['parent']=hierarchydata.parentCaption.combine_first(hierarchydata.parentName)
+    hierarchydata['child']=hierarchydata.childCaption.combine_first(hierarchydata.childName)
     #Create Graph Nodes and interconnecting Edges
     graph = graphviz.Digraph()
     for index, row in hierarchydata.iterrows():
