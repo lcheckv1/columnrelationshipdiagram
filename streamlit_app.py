@@ -19,6 +19,9 @@ if 'count' not in st.session_state:
    st.session_state.count = 0
 st.write('Count = ', st.session_state.count)
 
+if uploaded_file is None:
+   st.session_state.count = 0
+
 uploaded_file=st.file_uploader("Upload a .twb.", disabled=False, label_visibility="visible")
 if uploaded_file is not None and st.session_state.count==0:
     st.session_state.count=1
