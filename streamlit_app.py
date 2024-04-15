@@ -78,7 +78,7 @@ if uploaded_file is not None and st.session_state.count==0:
     hierarchydata=hierarchydata.drop_duplicates()
     hierarchydata['parent']=hierarchydata.parentCaption.combine_first(hierarchydata.parentName)
     hierarchydata['child']=hierarchydata.childCaption.combine_first(hierarchydata.childName)
-    data = dropdownData['caption'].unique().tolist()
+    data = columnData['caption'].unique().tolist()
     data=sorted(data)
 
 if uploaded_file is not None and st.session_state.count==1:
