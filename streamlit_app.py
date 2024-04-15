@@ -74,4 +74,4 @@ if uploaded_file is not None and counter==0:
 
     hierarchydata=hierarchydata.drop_duplicates()
     st.write(hierarchydata)
-    st.write(columnData
+    st.write(columnData)
