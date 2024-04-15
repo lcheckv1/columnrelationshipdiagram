@@ -15,12 +15,13 @@ A table will appear telling you where selected columns appear as a data dependen
 
 """
 # Initialize session state variables
-#if 'count' not in st.session_state:
-#   st.session_state.count = 0
-#st.write('Count = ', st.session_state.count)
+if 'count' not in st.session_state:
+   st.session_state.count = 0
+st.write('Count = ', st.session_state.count)
 
 uploaded_file=st.file_uploader("Upload a .twb.", disabled=False, label_visibility="visible")
-if uploaded_file is not None:
+if uploaded_file is not None and st.session_state.count==0:
+    st.session_state.count=1
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     string_data = stringio.read()
     root=et.fromstring(string_data)
@@ -79,8 +80,10 @@ if uploaded_file is not None:
     hierarchydata['child']=hierarchydata.childCaption.combine_first(hierarchydata.childName)
     data = columnData['caption'].unique().tolist()
     data=sorted(data)
+    st.session_state.hierarchydata=hierarchydata
 
-    graphdata=hierarchydata
+if st.session_state.count==1:
+    graphdata=st.session_state.hierarchydata
     #dataselect=st.sidebar.multiselect('Parent Columns',data)
     #graphdata=graphdata[graphdata['parentCaption'].isin(dataselect)]
     childselect=st.sidebar.multiselect('Child Columns',data)
