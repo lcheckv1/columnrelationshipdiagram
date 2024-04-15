@@ -70,7 +70,7 @@ if uploaded_file is not None and counter==0:
             parentCaption=row['cap']
             if parentName in childcalc:
                 row=[parentName,parentCaption,childName,childCaption]
-                hierarchydata.loc[len(calctranslate)] = row
+                hierarchydata.loc[len(hierarchydata)] = row
 
     hierarchydata=hierarchydata.drop_duplicates()
     st.write(hierarchydata)
