@@ -78,7 +78,7 @@ if uploaded_file is not None and counter==0:
     #Create Graph Nodes and interconnecting Edges
     graph = graphviz.Digraph()
     for index, row in df.iterrows():
-        graph.edge(str(hierarchydata["parentName"]), str(row["childName"]), label='')
+        graph.edge(str(hierarchydata["parentName"]), str(hierarchydata["childName"]), label='')
 
     st.graphviz_chart(graph)
     st.write(hierarchydata)
