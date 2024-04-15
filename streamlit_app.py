@@ -82,14 +82,14 @@ if uploaded_file is not None and counter==0:
     for index, row in hierarchydata.iterrows():
         graph.edge(str(row["parent"]), str(row["child"]), label='')
 
-    st.graphviz_chart(graph,use_container_width=True)
+    st.graphviz_chart(graph,use_container_width=False)
 
     def to_image(g):
         image_data = g.pipe(format='png')
         image_base64 = base64.b64encode(image_data).decode()
         return image_base64
 
-    graph_img = to_image(g=graph)
+    graph_img = to_image(graph)
     
     # Decode the base64 image data back to bytes
     graph_img_bytes = base64.b64decode(graph_img.encode())
