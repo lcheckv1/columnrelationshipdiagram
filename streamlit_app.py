@@ -81,20 +81,20 @@ if uploaded_file is not None and st.session_state.count==0:
     data = dropdownData['caption'].unique().tolist()
     data=sorted(data)
 
-
-#Create Graph Nodes and interconnecting Edges
-
-graphdata=hierarchydata
-dataselect=st.sidebar.multiselect('Parent Columns',data)
-graphdata=graphdata[graphdata['parentCaption'].isin(dataselect)]
-childselect=st.sidebar.multiselect('Child Columns',data)
-graphdata=graphdata[graphdata['childCaption'].isin(childselect)]
-
-graph = graphviz.Digraph()
-for index, row in graphdata.iterrows():
-    graph.edge(str(row["parent"]), str(row["child"]), label='')
-
-chart=st.graphviz_chart(graph,use_container_width=False)
+if uploaded_file is not None and st.session_state.count==1:
+   #Create Graph Nodes and interconnecting Edges
+   
+   graphdata=hierarchydata
+   dataselect=st.sidebar.multiselect('Parent Columns',data)
+   graphdata=graphdata[graphdata['parentCaption'].isin(dataselect)]
+   childselect=st.sidebar.multiselect('Child Columns',data)
+   graphdata=graphdata[graphdata['childCaption'].isin(childselect)]
+   
+   graph = graphviz.Digraph()
+   for index, row in graphdata.iterrows():
+       graph.edge(str(row["parent"]), str(row["child"]), label='')
+   
+   chart=st.graphviz_chart(graph,use_container_width=False)
 
 
 
