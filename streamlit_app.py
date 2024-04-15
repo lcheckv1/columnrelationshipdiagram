@@ -6,7 +6,7 @@ import streamlit as st
 from io import StringIO
 import xml.etree.ElementTree as et
 import graphviz
-
+import base64
 """
 # Tableau Analyzer
 
