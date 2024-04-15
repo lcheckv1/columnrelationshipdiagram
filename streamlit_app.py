@@ -62,7 +62,7 @@ if uploaded_file is not None and counter==0:
     #print(df)
   
     columnname=df[['column','caption']]
-    columnname=columnname[columnname['column'].apply(lambda x: x.startswith('[Calculation_'))]         
+    #columnname=columnname[columnname['column'].apply(lambda x: x.startswith('[Calculation_'))]         
     columnname=columnname.rename(columns={"column": "col", "caption": "cap"})
 
     hierarchydata=pd.DataFrame(columns=['parentName','parentCaption','childName','childCaption'])
