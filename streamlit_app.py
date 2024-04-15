@@ -80,19 +80,17 @@ if uploaded_file is not None:
     data = columnData['caption'].unique().tolist()
     data=sorted(data)
 
-
-   
-   graphdata=hierarchydata
-   #dataselect=st.sidebar.multiselect('Parent Columns',data)
-   #graphdata=graphdata[graphdata['parentCaption'].isin(dataselect)]
-   childselect=st.sidebar.multiselect('Child Columns',data)
-   graphdata=graphdata[graphdata['childCaption'].isin(childselect)]
-   
-   graph = graphviz.Digraph()
-   for index, row in graphdata.iterrows():
+    graphdata=hierarchydata
+    #dataselect=st.sidebar.multiselect('Parent Columns',data)
+    #graphdata=graphdata[graphdata['parentCaption'].isin(dataselect)]
+    childselect=st.sidebar.multiselect('Child Columns',data)
+    graphdata=graphdata[graphdata['childCaption'].isin(childselect)]
+    
+    graph = graphviz.Digraph()
+    for index, row in graphdata.iterrows():
        graph.edge(str(row["parent"]), str(row["child"]), label='')
-   
-   chart=st.graphviz_chart(graph,use_container_width=False)
+    
+    chart=st.graphviz_chart(graph,use_container_width=False)
 
 
 
