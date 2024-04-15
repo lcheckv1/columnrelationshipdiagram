@@ -70,7 +70,7 @@ if uploaded_file is not None and counter==0:
     for index,row in df.iterrows():
         childcalc=(row['calculation'])
         childCaption=row['caption']
-        childName=row['column'
+        childName=row['column']
         #basically a self-join, to determine if any/all column fields exist in the calculation
         for index,row in columnname.iterrows():
             parentName=row['col']
