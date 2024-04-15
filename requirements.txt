@@ -2,4 +2,5 @@ altair
 pandas
 streamlit
 graphviz
-streamlit pyvis networkx
+pyvis.network
+networkx
