@@ -17,7 +17,7 @@ A table will appear telling you where selected columns appear as a data dependen
 # Initialize session state variables
 if 'count' not in st.session_state:
    st.session_state.count = 0
-
+st.write('Count = ', st.session_state.count_value)
 
 uploaded_file=st.file_uploader("Upload a .twb.", disabled=False, label_visibility="visible")
 if uploaded_file is not None and st.session_state.count==0:
