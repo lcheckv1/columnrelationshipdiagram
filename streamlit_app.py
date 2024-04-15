@@ -5,6 +5,7 @@ import pandas as pd
 import streamlit as st
 from io import StringIO
 import xml.etree.ElementTree as et
+import graphviz
 
 """
 # Tableau Analyzer
@@ -71,7 +72,14 @@ if uploaded_file is not None and counter==0:
             if parentName in childcalc:
                 row=[parentName,parentCaption,childName,childCaption]
                 hierarchydata.loc[len(hierarchydata)] = row
+                
 
     hierarchydata=hierarchydata.drop_duplicates()
+    #Create Graph Nodes and interconnecting Edges
+    graph = graphviz.Digraph()
+    for index, row in df.iterrows():
+        graph.edge(str(hierarchydata["parentName"]), str(row["childName"]), label='')
+
+    st.graphviz_chart(graph)
     st.write(hierarchydata)
     st.write(columnData)
