@@ -21,7 +21,6 @@ st.write('Count = ', st.session_state.count)
 
 uploaded_file=st.file_uploader("Upload a .twb.", disabled=False, label_visibility="visible")
 if uploaded_file is not None and st.session_state.count==0:
-    st.session_state.count=1
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     string_data = stringio.read()
     root=et.fromstring(string_data)
@@ -81,7 +80,7 @@ if uploaded_file is not None and st.session_state.count==0:
     data = columnData['caption'].unique().tolist()
     data=sorted(data)
 
-if uploaded_file is not None and st.session_state.count==1:
+if uploaded_file is not None and st.session_state.count==0:
    #Create Graph Nodes and interconnecting Edges
    
    graphdata=hierarchydata
