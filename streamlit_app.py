@@ -81,9 +81,11 @@ if uploaded_file is not None and st.session_state.count==0:
     data = columnData['caption'].unique().tolist()
     data=sorted(data)
     st.session_state.hierarchydata=hierarchydata
+    st.session_state.data=data
 
 if st.session_state.count==1:
     graphdata=st.session_state.hierarchydata
+    data=st.session_state.data
     #dataselect=st.sidebar.multiselect('Parent Columns',data)
     #graphdata=graphdata[graphdata['parentCaption'].isin(dataselect)]
     childselect=st.sidebar.multiselect('Child Columns',data)
