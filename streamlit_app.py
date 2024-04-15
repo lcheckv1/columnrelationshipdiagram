@@ -75,10 +75,12 @@ if uploaded_file is not None and counter==0:
                 
 
     hierarchydata=hierarchydata.drop_duplicates()
+    hierarchydata['parent']=hierarchydata.parentName.combine_first(hierarchydata.parentCaption)
+    hierarchydata['child']=hierarchydata.childName.combine_first(hierarchydata.childCaption)
     #Create Graph Nodes and interconnecting Edges
     graph = graphviz.Digraph()
     for index, row in hierarchydata.iterrows():
-        graph.edge(str(row["parentName"]), str(row["childName"]), label='')
+        graph.edge(str(row["parent"]), str(row["child"]), label='')
 
     st.graphviz_chart(graph)
     st.write(hierarchydata)
