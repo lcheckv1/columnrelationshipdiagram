@@ -73,6 +73,6 @@ if uploaded_file is not None and counter==0:
         tempcalc=''
 
 
-    datasource=datasource.merge(calctranslate,left_on='calculation',right_on='oldcalc',how='left')
+    datasource=columnData.merge(calctranslate,left_on='calculation',right_on='oldcalc',how='left')
     datasource=datasource.drop_duplicates()
     st.write(datasource)
