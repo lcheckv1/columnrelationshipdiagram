@@ -54,13 +54,6 @@ if uploaded_file is not None and counter==0:
 
 
     df=columnData
-    df2=columnData
-  
-    calctranslate=pd.DataFrame(columns=['oldcalc','calculation_new'])
-
-    relationshipdf=pd.DataFrame(columns=['parentcaption','childcaption'])
-    #print(df)
-  
     columnname=df[['column','caption']]
     #columnname=columnname[columnname['column'].apply(lambda x: x.startswith('[Calculation_'))]         
     columnname=columnname.rename(columns={"column": "col", "caption": "cap"})
@@ -81,3 +74,4 @@ if uploaded_file is not None and counter==0:
 
     hierarchydata=hierarchydata.drop_duplicates()
     st.write(hierarchydata)
+    st.write(columnData
