@@ -80,12 +80,11 @@ if uploaded_file is not None:
     data = columnData['caption'].unique().tolist()
     data=sorted(data)
 
-if uploaded_file is not None:
-   #Create Graph Nodes and interconnecting Edges
+
    
    graphdata=hierarchydata
-   dataselect=st.sidebar.multiselect('Parent Columns',data)
-   graphdata=graphdata[graphdata['parentCaption'].isin(dataselect)]
+   #dataselect=st.sidebar.multiselect('Parent Columns',data)
+   #graphdata=graphdata[graphdata['parentCaption'].isin(dataselect)]
    childselect=st.sidebar.multiselect('Child Columns',data)
    graphdata=graphdata[graphdata['childCaption'].isin(childselect)]
    
